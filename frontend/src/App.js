@@ -11,14 +11,16 @@ function App() {
   const [footer, setFooter] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
+  const api = "https://email-template-tref.onrender.com"
+
   useEffect(() => {
-    axios.get("http://localhost:5000/getAllEmailTemplates").then((response) => {
+    axios.get(`${api}/getAllEmailTemplates`).then((response) => {
       setTemplates(response.data.templates);
     });
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/getEmailLayout").then((response) => {
+    axios.get(`${api}/getEmailLayout`).then((response) => {
       setLayout(response.data.layout);
     });
   }, []);
@@ -30,20 +32,20 @@ function App() {
     }
     const emailConfig = { title, content, footer, imageUrl };
     await axios.put(
-      `http://localhost:5000/updateEmailTemplate/${selectedTemplateId}`,
+      `${api}/updateEmailTemplate/${selectedTemplateId}`,
       emailConfig
     );
     alert("Template updated successfully!");
     setSelectedTemplateId(null); // Clear selection after update
-    const updatedTemplates = await axios.get("http://localhost:5000/getAllEmailTemplates");
+    const updatedTemplates = await axios.get(`${api}/getAllEmailTemplates`);
     setTemplates(updatedTemplates.data.templates);
   };
 
   const handleDeleteTemplate = async (id) => {
     if (window.confirm("Are you sure you want to delete this template?")) {
-      await axios.delete(`http://localhost:5000/deleteEmailTemplate/${id}`);
+      await axios.delete(`${api}/deleteEmailTemplate/${id}`);
       alert("Template deleted successfully!");
-      const updatedTemplates = await axios.get("http://localhost:5000/getAllEmailTemplates");
+      const updatedTemplates = await axios.get(`${api}/getAllEmailTemplates`);
       setTemplates(updatedTemplates.data.templates);
     }
   };
@@ -53,7 +55,7 @@ function App() {
     formData.append("image", e.target.files[0]); // Ensure a file is selected
     try {
       const response = await axios.post(
-        "http://localhost:5000/uploadImage",
+        `${api}/uploadImage`,
         formData
       );
       setImageUrl(`${response.data.imageUrl}`);
@@ -73,15 +75,15 @@ function App() {
 
   const handleSaveTemplate = async () => {
     const emailConfig = { title, content, footer, imageUrl };
-    await axios.post("http://localhost:5000/uploadEmailConfig", emailConfig);
+    await axios.post(`${api}/uploadEmailConfig`, emailConfig);
     alert("Email template saved successfully!");
-    const response = await axios.get("http://localhost:5000/getAllEmailTemplates");
+    const response = await axios.get(`${api}/getAllEmailTemplates`);
     setTemplates(response.data.templates);
   };
 
   const handleDownload = async (emailConfig) => {
     const response = await axios.post(
-      "http://localhost:5000/renderAndDownloadTemplate",
+      `${api}/renderAndDownloadTemplate`,
       emailConfig,
       {
         responseType: "blob",
@@ -96,7 +98,7 @@ function App() {
   };
 
   const handleSelectTemplate = async (id) => {
-    const response = await axios.get(`http://localhost:5000/getEmailTemplate/${id}`);
+    const response = await axios.get(`${api}/getEmailTemplate/${id}`);
     const template = response.data.template;
     setSelectedTemplateId(id);
     setTitle(template.title);
