@@ -1,0 +1,128 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-top: 20px;
+}
+
+h2 {
+  color: #333;
+}
+
+/* Editor Section */
+.editor {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 600px;
+}
+
+.editor button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.editor button:hover {
+  background-color: #0056b3;
+}
+
+.editor input,
+.editor textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.editor input[type="file"] {
+  padding: 5px;
+}
+
+.editor .preview {
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+/* Template Grid */
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.template-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.template-card h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.template-card p,
+.template-card footer {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0;
+}
+
+.template-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.template-card button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.template-card button:hover {
+  background-color: #218838;
+}
+
+.template-card button:last-child {
+  background-color: #dc3545;
+}
+
+.template-card button:last-child:hover {
+  background-color: #c82333;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .template-grid {
+    grid-template-columns: 1fr;
+  }
+}
